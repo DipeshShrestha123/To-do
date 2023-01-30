@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TODO{
+  ArrayList<String> todoList = new ArrayList<String>();
+  
+  public void addTask(String task) {
+    todoList.add(task);
+  }
+  
+  public void removeTask(int index) {
+    todoList.remove(index);
+  }
+  
+  public void printTasks() {
+    System.out.println("To-do List:");
+    for (int i = 0; i < todoList.size(); i++) {
+      System.out.println(i + 1 + ". " + todoList.get(i));
+    }
+  }
+  
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    TodoApp todoApp = new TodoApp();
+    
+    while (true) {
+      System.out.println("\nEnter a command: (add, remove, print, quit)");
+      String command = sc.nextLine();
+      
+      if (command.equals("add")) {
+        System.out.println("Enter a task:");
+        String task = sc.nextLine();
+        todoApp.addTask(task);
+      } else if (command.equals("remove")) {
+        System.out.println("Enter the index of the task to remove:");
+        int index = sc.nextInt();
+        todoApp.removeTask(index - 1);
+      } else if (command.equals("print")) {
+        todoApp.printTasks();
+      } else if (command.equals("quit")) {
+        break;
+      } else {
+        System.out.println("Invalid command.");
+      }
+    }
+    
+    System.out.println("Goodbye!");
+    sc.close();
+  }
+}
